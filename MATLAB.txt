@@ -1,0 +1,115 @@
+
+%FIRST QUESTION
+%*********************LINEAR**************
+
+x=[9 9.1 9.2 9.3 9.4 9.5 9.6 9.7 9.8 9.9 10];
+y=[41.74 42.24 43.88 42.16 43.70 45.04 42.46 45.73 44.06 45.86 44.95];
+n=length(x);
+a1=(n*sum(x.*y)-sum(x)*sum(y))/(n*sum(x.^2)-(sum(x)).^2);
+a0=sum(y)/n-a1*sum(x)/n;
+r=(n*sum(x.*y)-sum(x)*sum(y))/((sqrt(n*sum(x.^2)-(sum(x))^2))*(sqrt(n*sum(y.^2)-(sum(y))^2)));
+r^2
+
+
+%**************************exponential*************88
+ye=log(y);
+n=length(x);
+a1=(n*sum(x.*ye)-sum(x)*sum(ye))/(n*sum(x.^2)-(sum(x)).^2);
+a0=sum(ye)/n-a1*sum(x)/n;
+r=(n*sum(x.*ye)-sum(x)*sum(ye))/((sqrt(n*sum(x.^2)-(sum(x))^2))*(sqrt(n*sum(ye.^2)-(sum(ye))^2)));
+b=exp(a0);, m=a1; ,r^2
+
+
+ANSWERS:
+ans = 0.5629 (LINEAR)
+ans = 0.5640( EXPONENTIAL IS A BETTER FIT)
+
+
+
+
+
+
+
+
+
+
+
+%SECOND QUESTION
+
+
+%SIMPSONS 1/3 RULE
+format long
+f=@(x)1/(sqrt(x^2+pi^2));
+a=0;
+b=pi;
+n=100;
+h=(b-a)/n;
+s=0.5*(f(a)+f(b));
+for  i=1:n-1
+s=s+f(a+i*h);
+end
+l=h*s
+
+
+
+%TRAPEZOIDAL RULE********************************
+format long
+f=@(x)1/(sqrt(x^2+pi^2));
+a=0;
+b=pi;
+n=100;
+h=(b-a)/n;
+s=(f(a)+f(b));
+for i=1:2:n-1
+s=s+4*f(a+i*h);
+end
+for i=2:2:n-2
+s=s+2*f(a+i*h);
+end
+l=h/3*s
+
+
+
+
+%LEFT RECTANGLE************************************
+format long
+f=@(x)1/(sqrt(x^2+pi^2));
+a=0;
+b=pi;
+n=100;
+h=(b-a)/n;
+s=f(a);
+for i=1:n-1
+s=s+f(a+i*h);
+end
+l=h*s
+
+
+%RIGHT RECTANGLE**********************8
+format long
+f=@(x)1/(sqrt(x^2+pi^2));
+a=0;
+b=pi;
+n=100;
+h=(b-a)/n;
+s=0;
+for i=1:n
+s=s+f(a+i*h);
+end
+l=h*s
+
+
+%*******************
+
+
+  l=quad('1/(sqrt(x^2+pi^2))',0,pi)
+
+ANSWERS:
+l = 0.881370640737605 SIMPSON
+l = 0.881373587034271 TRAPEZOIDAL
+l = 0.882835106831672  LRR
+l = 0.879906174643538 RRR
+l = 0.881373587019543  
+
+
+
